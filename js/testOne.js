@@ -46,15 +46,28 @@ function fibonacci(){
         {
             /*
                 let temp=fib[i]+fib[i+1]
-            fib.push(temp)
+                fib.push(temp)
                 */
                 fib.push(fib[i]+fib[i+1])
-
-
         }
     )
     console.log(fib)
 }
+
+// fibonacci recursive 
+
+function fibonacciRecur(n){
+    if(typeof(n)!='number' || n<2){return null}
+
+    let fib =[0,1]
+    for(let i=2;i<=n;i++){
+        fib.push(fib[i-1]+fib[i-2])
+        //console.log(fib)
+    }
+    console.log(fib[n])
+}
+
+
 
 //  factorial a number
 
@@ -65,6 +78,35 @@ function factorial(x){
         .reduce((x,i)=>x*i)
 
     console.log(don)
+
+}
+
+//  factorial via recurrsion... meh...
+
+function factorialRecur(x){
+
+    if(x<1){return}
+
+    /*
+    let y=x
+    let total
+    do{
+        --y
+        total=x*y
+        x=total
+        console.log(total+ " "+y)
+    }
+    while(y>=2)
+    */
+
+        //attempt
+    for(let i=1,j=1;i<x;i++){
+        j=j*(i+1)
+
+        console.log(i+" "+x+" "+j)
+        
+        console.log(j)
+    }
 
 }
 
@@ -109,11 +151,153 @@ function logSolve(variable){
     return ans%1==0 ? true:false
 }
 
-function init(){
-    a = logSolve(2)    
+/*
+    ray=[0,13,4,22,7,237,44,96,100]
+    target =7
+
+    a= searchAlgo(ray,target)
     console.log(a)
+*/
+
+function searchAlgo(nums, lookVar){
+    let found=-1
+
+    for(i=0;i<nums.length;i++){
+
+        if(nums[i]==lookVar){
+            return i
+        }
+    }
+    return found
+}
+
+
+function biNSearRecur(nums,target){
+    if(nums.length==0||target>nums[nums.length-1])  {return -1}
+    if(nums[0]==target){return 0}
+
+    let found=-1,left=0,current=Math.ceil((nums.length)/2), right=nums.length-1, previousCur
+    
+    search()
+    
+
+    function search(){
+            //if(found!=-1){return}
+
+        (nums[current]<target) ? 
+            (sout(current), left=current, moveCur(), checkit()) :
+            (sout(current), right=current, moveCur(), checkit())
+    }
+
+    function moveCur(){
+        current=  Math.ceil((left+right)/2)
+    }
+
+    function checkit(){
+        if(nums[current]==target){sout('checkit'+current);found=current; return }
+        if(previousCur==current){return}
+        search()
+    }
+
+
+    sout(`answer is ${found}`)
+    return found
+}
+
+
+
+
+
+
+function binarySearch(nums, target){
+    if(nums.length==0||target>nums[nums.length-1])
+        {return -1}
+
+    let found=-1, l=0,r=nums.length-1, current=0;
+
+    looper()
+
+    function looper(){
+        (nums[current]<target) ? 
+            (l=current, moveCur(), checkit()) :
+            (r=current, moveCur(), checkit())
+    }
+
+    function checkit(){
+        if(nums[current]==target){found=current; return }
+        looper()
+    }
+
+    function moveCur(){
+        current=  Math.ceil((l+r)/2)
+    }
+
+    return found
+
+
+/*
+    function looper(){
+            //checkit()
+            if(found!=-1){return}
+            (nums[current]<target) ? 
+            (l=current, moveCur(),sout("right"), checkit(), looper()) :
+            (r=current, moveCur(),sout("left"), checkit(), looper())
+
+        }
+
+    function checkit(){
+            sout('check run')
+            if(nums[current]==target){found= current }
+            //if(nums[current]==target){return current}
+
+    }
+*/
+
+    function looper2(){
+            l=current, moveCur()
+            if(l==r){ found= 99}
+            console.log(`current is  ${l} ${current} ${r}`);
+            sout(" ")   
+
+    }
+
+    function looperBROKE(){
+
+        /*
+            console.log(`current is  ${current} ${l} ${r}`);
+            if(l==r){sout("yo"); found= 5; return}
+            l=current, moveCur(),looper()
+            */
+
+            console.log(`current is  ${current} ${l} ${r}`);
+            if(nums[current]==target){found= current; return }
+
+            (nums[current]<target) ? 
+            (l=current, moveCur(),looper()) :
+            (r=current, moveCur(), looper())
+
+        }
+
+    /*
+    l=current, moveCur()
+    console.log(`inital current is  ${current} ${l} ${r} ${target}`)
+    sout(nums[current])
+    */
+
+
+
+    }
+
+function sout(x){
+    console.log(`${x}`)
+}
+
+function init(){
+    ray = [1,2,3,4,5,6,7,8,10]
+        variable = 9
+    //sout(binarySearch(ray,variable))
+    sout(biNSearRecur(ray,variable))
 }
 
 window.onload= init()
-
 
