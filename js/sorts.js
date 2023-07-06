@@ -215,7 +215,7 @@ function hashLearn(){
 
     hash(key) {
         let total=0
-        key.forEach((x,i)=>total+=key.charCodeAt(i))
+        key.forEach((x,i)=>total+=key.ptscharCodeAt(i))
 
         return total % this.size
     }
