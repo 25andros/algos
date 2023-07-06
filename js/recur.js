@@ -139,19 +139,88 @@ function strPair(){
         }
 
     })
-
-        /*
-        amt=words.slice(i).toString().match(temp,'g')||[""].length
-        if(amt>0){
-            sout('item found')
-            total=total+1
-            sout('total now is '+total)
-        }
-    })
-*/
-
     sout('total'+total)
 }
+
+function unqInt(){
+    //2610. Convert an Array Into a 2D Array With Conditions
+
+    //nums = [1,3,4,1,2,3,1,1,3]
+    nums = [5,10,6,5,1,1,1,2,1,1]
+    ans= [[]]
+
+    nums.forEach((x,i)=>{
+        for(let j=0;j<nums.length;j++){
+            if(ans[j].filter(z=>z==x).length==1){
+            //if(ans[j].filter(z=>z==x)==true){
+            //if(ans[j].toString().match(x)!=null){
+                if (ans[j+1]==undefined){ans[j+1]=[]}   //idempotient way of creating new array
+            }
+            else{
+                ans[j].push(x)
+                //console.log(ans)
+                sout(`x,j= ${x}  ${j}`)
+                break
+            }
+        }
+    })
+    console.log(ans)
+}
+
+function revWordStr(){
+    s = "Let's take LeetCode contest"
+    //sout(s.split(' ').length)
+    bro=[]
+    Array(s.split(' ').length).fill({})
+    .forEach((x,i)=>
+        {
+        bro[i]=[...s.split(' ')[i]].reverse().join('')
+        }
+    )
+    sout(bro.join(' '))
+}
+
+function imgRev(){
+    //832. Flipping an Image
+
+img = [[1,1,0],[1,0,1],[0,0,0]]
+
+img.map((x,i)=>
+    {
+    x.reverse()
+        for(let j=0;j<x.length;j++){
+        //x[j]=1-x[j]
+        x[j]=x[j]?0:1
+        }
+        // inverse 1 to 0, 0 to 1, unary operation
+    }
+)
+
+
+    /*
+img.map((x,i)=>
+    {
+    x.reverse()
+        .forEach((y,j)=>
+            y?0:1)
+    }
+)
+*/
+console.log(img)
+
+}
+
+function prefixRev(){
+    //2000. Reverse Prefix of Word
+
+    word = "abcdefd", ch = "d"
+
+    i=word.indexOf(ch)+1
+    return word.slice(0,i).split('').reverse().join('')+
+        word.slice(i)
+    //console.log(word)
+}
+
 
 
 function sout(x){
