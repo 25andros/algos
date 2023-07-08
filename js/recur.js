@@ -221,7 +221,24 @@ function prefixRev(){
     //console.log(word)
 }
 
+function bankBreak(){
+    bank = ["011001","000000","010100","001000"]
 
+    for(let i=0;i<bank.length;i++){
+        bank[i]=[...bank[i]].filter(x=>x==1).length
+    }
+    bank.map((x,i)=>{
+        if(x==0){return bank[i+1]}
+    })
+
+    //bank.reduce((x,i)=>x+i)
+    //bank.map((x,i)=>
+        //x=[...x].filter(y=>y==1).length||1 
+        //x=x.match(/1/g)||[1].length
+
+    console.log(bank)
+
+}
 
 function sout(x){
     console.log(`${x}`)
